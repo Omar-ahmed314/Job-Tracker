@@ -26,9 +26,10 @@ class UpdateJobsHandler {
                     { value: 'Offer', label: 'Job Offer' },
                 ],
             });
-            //   spinner().start('Updating job...');
+            const s = (0, prompts_1.spinner)();
+            s.start('Updating job...');
             const updatedJob = await jobModel.update(updateJobID, updateJobStatus);
-            //   spinner().stop('Job updated successfully!');
+            s.stop('Job updated successfully!');
             if (updatedJob) {
                 console.log(chalk_1.default.green('Job updated successfully!'));
             }

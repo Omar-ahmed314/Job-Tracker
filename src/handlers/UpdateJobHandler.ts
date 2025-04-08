@@ -24,12 +24,13 @@ export default class UpdateJobsHandler implements Handler {
           { value: 'Offer', label: 'Job Offer' },
         ],
       });
-      //   spinner().start('Updating job...');
+      const s = spinner();
+      s.start('Updating job...');
       const updatedJob = await jobModel.update(
         updateJobID as string,
         updateJobStatus as jobStatus
       );
-      //   spinner().stop('Job updated successfully!');
+      s.stop('Job updated successfully!');
       if (updatedJob) {
         console.log(chalk.green('Job updated successfully!'));
       } else {

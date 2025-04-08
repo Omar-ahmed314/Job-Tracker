@@ -50,7 +50,10 @@ class AddJobHandler {
                 jobURL,
                 details,
             };
+            const s = (0, prompts_1.spinner)();
+            s.start('Inserting job...');
             const insertedJob = await jobModel.insert(jobData);
+            s.stop('Job inserted successfully!');
             console.log(chalk_1.default.green('Job inserted successfully!'));
         }
         return data;

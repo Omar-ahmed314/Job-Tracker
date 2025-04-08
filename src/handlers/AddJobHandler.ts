@@ -1,6 +1,6 @@
 import Handler from './Handler';
 import Job, { job } from '../models/jobModel';
-import { text, select } from '@clack/prompts';
+import { text, select, spinner } from '@clack/prompts';
 import chalk from 'chalk';
 
 const jobModel = new Job();
@@ -49,7 +49,10 @@ export default class AddJobHandler implements Handler {
         jobURL,
         details,
       };
+      const s = spinner();
+      s.start('Inserting job...');
       const insertedJob = await jobModel.insert(jobData as job);
+      s.stop('Job inserted successfully!');
       console.log(chalk.green('Job inserted successfully!'));
     }
     return data;

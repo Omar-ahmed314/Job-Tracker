@@ -13,7 +13,10 @@ export default class DeleteJobHandler implements Handler {
         message: 'Enter job ID to delete: ',
         placeholder: '60d5f484f8d3c4b8b8e0c1a2',
       });
+      const s = spinner();
+      s.start('Deleting job...');
       const deletedJob = await jobModel.delete(deleteJobID as string);
+      s.stop('Job deleted successfully!');
       if (deletedJob) {
         console.log(chalk.green('Job deleted successfully!'));
       } else {

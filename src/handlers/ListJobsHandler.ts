@@ -1,5 +1,7 @@
 import Handler from './Handler';
 import Job from '../models/jobModel';
+import { spinner } from '@clack/prompts';
+import showTable from '../services/services';
 
 const jobModel = new Job();
 
@@ -7,21 +9,11 @@ export default class ListJobsHandler implements Handler {
   constructor() {}
   async handle(data: any) {
     if (data?.action === 'list') {
+      const s = spinner();
+      s.start('Fetching jobs...');
       const jobs = await jobModel.index();
-      jobs?.forEach((job) => {
-        job._id = job._id?.toString();
-        job.applyDate = job.applyDate?.toDateString() as unknown as Date;
-      });
-      if (jobs?.length)
-        console.table(jobs, [
-          '_id',
-          'jobTitle',
-          'company',
-          'status',
-          'applyDate',
-          'jobURL',
-          'details',
-        ]);
+      s.stop('Jobs fetched successfully!');
+      showTable(jobs);
     }
     return data;
   }

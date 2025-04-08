@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jobModel_1 = __importDefault(require("../models/jobModel"));
 const prompts_1 = require("@clack/prompts");
-const chalk_1 = __importDefault(require("chalk"));
+const services_1 = __importDefault(require("../services/services"));
 const jobModel = new jobModel_1.default();
 class FilterJobHandler {
     constructor() { }
@@ -30,27 +30,15 @@ class FilterJobHandler {
                 message: 'To date (YYYY-MM-DD): ',
                 placeholder: '2023-12-31',
             });
-            //   spinner().start('Filtering jobs...');
+            const s = (0, prompts_1.spinner)();
+            s.start('Filtering jobs...');
             const filteredJobs = await jobModel.filter({
                 status: filterStatus,
                 from: fromDate ? new Date(fromDate) : undefined,
                 to: toDate ? new Date(toDate) : undefined,
             });
-            //   spinner().stop('Jobs filtered successfully!');
-            if (filteredJobs?.length) {
-                console.table(filteredJobs, [
-                    '_id',
-                    'jobTitle',
-                    'company',
-                    'status',
-                    'applyDate',
-                    'jobURL',
-                    'details',
-                ]);
-            }
-            else {
-                console.log(chalk_1.default.red('No jobs found!'));
-            }
+            s.stop('Jobs filtered successfully!');
+            (0, services_1.default)(filteredJobs);
         }
         return data;
     }

@@ -2,6 +2,7 @@ import Handler from './Handler';
 import Job, { job, jobStatus } from '../models/jobModel';
 import { intro, outro, text, select, spinner } from '@clack/prompts';
 import chalk from 'chalk';
+import showTable from '../services/services';
 
 const jobModel = new Job();
 
@@ -28,26 +29,15 @@ export default class FilterJobHandler implements Handler {
         message: 'To date (YYYY-MM-DD): ',
         placeholder: '2023-12-31',
       });
-      //   spinner().start('Filtering jobs...');
+      const s = spinner();
+      s.start('Filtering jobs...');
       const filteredJobs = await jobModel.filter({
         status: filterStatus as jobStatus,
         from: fromDate ? new Date(fromDate as string) : undefined,
         to: toDate ? new Date(toDate as string) : undefined,
       });
-      //   spinner().stop('Jobs filtered successfully!');
-      if (filteredJobs?.length) {
-        console.table(filteredJobs, [
-          '_id',
-          'jobTitle',
-          'company',
-          'status',
-          'applyDate',
-          'jobURL',
-          'details',
-        ]);
-      } else {
-        console.log(chalk.red('No jobs found!'));
-      }
+      s.stop('Jobs filtered successfully!');
+      showTable(filteredJobs as job[]);
     }
     return data;
   }

@@ -15,7 +15,10 @@ class DeleteJobHandler {
                 message: 'Enter job ID to delete: ',
                 placeholder: '60d5f484f8d3c4b8b8e0c1a2',
             });
+            const s = (0, prompts_1.spinner)();
+            s.start('Deleting job...');
             const deletedJob = await jobModel.delete(deleteJobID);
+            s.stop('Job deleted successfully!');
             if (deletedJob) {
                 console.log(chalk_1.default.green('Job deleted successfully!'));
             }
