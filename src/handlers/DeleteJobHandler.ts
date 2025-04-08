@@ -1,10 +1,14 @@
 import Handler, { NextFunction } from './Handler';
-import Job, { job, jobStatus } from '../models/jobModel';
-import { intro, outro, text, select, spinner } from '@clack/prompts';
+import Job from '../models/jobModel';
+import { text, spinner } from '@clack/prompts';
 import chalk from 'chalk';
 
 const jobModel = new Job();
 
+/**
+ * DeleteJobHandler class to handle the delete job action.
+ * It prompts the user for a job ID and deletes the job.
+ */
 export default class DeleteJobHandler implements Handler {
   constructor() {}
   async handle(data: any, next: NextFunction) {

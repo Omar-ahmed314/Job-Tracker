@@ -1,6 +1,10 @@
 import chalk from 'chalk';
 import { job } from '../models/jobModel';
 
+/**
+ * Displays a table of jobs in the console in form of table.
+ * @param {job[] | undefined} jobs - The array of job objects to display.
+ */
 function showTable(jobs: job[] | undefined) {
   jobs?.forEach((job) => {
     job._id = job._id?.toString();

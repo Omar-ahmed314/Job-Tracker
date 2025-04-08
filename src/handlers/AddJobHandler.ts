@@ -5,6 +5,10 @@ import chalk from 'chalk';
 
 const jobModel = new Job();
 
+/**
+ * AddJobHandler class to handle the add job action.
+ * It prompts the user for job details and inserts a new job.
+ */
 export default class AddJobHandler implements Handler {
   constructor() {}
   async handle(data: any) {

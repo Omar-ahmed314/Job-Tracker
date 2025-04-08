@@ -1,8 +1,10 @@
 import Handler, { NextFunction } from './Handler';
-import Job, { job, jobStatus } from '../models/jobModel';
-import { intro, outro, text, select, spinner } from '@clack/prompts';
-import chalk from 'chalk';
+import { select } from '@clack/prompts';
 
+/**
+ * SkaffoldHandler class to handle the skaffold action.
+ * It prompts the user for an action to perform on the skaffold jobs.
+ */
 export default class SkaffoldHandler implements Handler {
   constructor() {}
   async handle(data: any, next: NextFunction) {

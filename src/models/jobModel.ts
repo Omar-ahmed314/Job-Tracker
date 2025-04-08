@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // Connect to MongoDB
-mongoose.connect(`mongodb://localhost:27017/jobTracing`);
+mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);
 const jobsSchema = new mongoose.Schema(
   {
     jobTitle: { type: String, required: true },
@@ -39,7 +39,16 @@ export type job = {
   details?: string;
 };
 
+/**
+ * Job model class to handle job operations.
+ * @class Job
+ */
 export default class Job {
+  /**
+   * Inserts a new job into the database.
+   * @param job - The job object to be inserted into the database.
+   * @returns {Promise<job | undefined>} - The inserted job object or undefined if an error occurs.
+   */
   async insert(job: job): Promise<job | undefined> {
     try {
       const jobJson = (await new jobModel(job).save()) as unknown as job;
@@ -49,6 +58,10 @@ export default class Job {
     }
   }
 
+  /**
+   * Retrieves all jobs from the database.
+   * @returns {Promise<job[] | undefined>} - An array of job objects or undefined if an error occurs.
+   */
   async index(): Promise<job[] | undefined> {
     try {
       const jobs = (await jobModel.find().lean()) as unknown as job[];
@@ -58,6 +71,11 @@ export default class Job {
     }
   }
 
+  /**
+   * Retrieves a job by its ID from the database.
+   * @param jobID - The ID of the job to be retrieved.
+   * @returns {Promise<job | undefined>} - The job object or undefined if an error occurs.
+   */
   async showById(jobID: string): Promise<job | undefined> {
     try {
       const job = (await jobModel.findById(jobID).lean()) as unknown as job;
@@ -67,6 +85,11 @@ export default class Job {
     }
   }
 
+  /**
+   * Filters jobs based on the provided options.
+   * @param options - The filter options including status, from date, and to date.
+   * @returns {Promise<job[] | undefined>} - An array of filtered job objects or undefined if an error occurs.
+   */
   async filter(options: {
     status?: jobStatus;
     from?: Date;
@@ -90,6 +113,11 @@ export default class Job {
     }
   }
 
+  /**
+   * Deletes a job by its ID from the database.
+   * @param jobID - The ID of the job to be deleted.
+   * @returns {Promise<job | undefined>} - The deleted job object or undefined if an error occurs.
+   */
   async delete(jobID: string): Promise<job | undefined> {
     try {
       const job = (await jobModel.findByIdAndDelete(jobID)) as unknown as job;
@@ -99,6 +127,12 @@ export default class Job {
     }
   }
 
+  /**
+   * Updates the status of a job by its ID in the database.
+   * @param jobID - The ID of the job to be updated.
+   * @param jobStatus - The new status of the job.
+   * @returns {Promise<job | undefined>} - The updated job object or undefined if an error occurs.
+   */
   async update(jobID: string, jobStatus: jobStatus): Promise<job | undefined> {
     try {
       const jobJson = (await jobModel.findByIdAndUpdate(

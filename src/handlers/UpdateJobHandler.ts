@@ -1,10 +1,14 @@
 import Handler, { NextFunction } from './Handler';
-import Job, { job, jobStatus } from '../models/jobModel';
-import { intro, outro, text, select, spinner } from '@clack/prompts';
+import Job, { jobStatus } from '../models/jobModel';
+import { text, select, spinner } from '@clack/prompts';
 import chalk from 'chalk';
 
 const jobModel = new Job();
 
+/**
+ * UpdateJobsHandler class to handle the update job action.
+ * It prompts the user for a job ID and new status, then updates the job.
+ */
 export default class UpdateJobsHandler implements Handler {
   constructor() {}
   async handle(data: any, next: NextFunction) {

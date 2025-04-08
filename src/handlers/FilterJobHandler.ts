@@ -1,11 +1,14 @@
 import Handler, { NextFunction } from './Handler';
 import Job, { job, jobStatus } from '../models/jobModel';
-import { intro, outro, text, select, spinner } from '@clack/prompts';
-import chalk from 'chalk';
+import { text, select, spinner } from '@clack/prompts';
 import showTable from '../services/services';
 
 const jobModel = new Job();
 
+/**
+ * FilterJobHandler class to handle the filter job action.
+ * It prompts the user for a status and date range, then filters the jobs.
+ */
 export default class FilterJobHandler implements Handler {
   constructor() {}
   async handle(data: any, next: NextFunction) {

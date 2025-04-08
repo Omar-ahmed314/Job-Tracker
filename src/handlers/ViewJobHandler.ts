@@ -1,13 +1,22 @@
 import Handler, { NextFunction } from './Handler';
-import Job, { job, jobStatus } from '../models/jobModel';
-import { intro, outro, text, select, spinner } from '@clack/prompts';
-import chalk from 'chalk';
+import Job, { job } from '../models/jobModel';
+import { text, spinner } from '@clack/prompts';
 import showTable from '../services/services';
 
 const jobModel = new Job();
 
+/**
+ * ViewJobHandler class to handle the view job action.
+ * It prompts the user for a job ID and displays the job details.
+ */
 export default class ViewJobHandler implements Handler {
   constructor() {}
+  /**
+   * Handles the view job action.
+   * @param data - The data object containing the action.
+   * @param next - The next function to call in the middleware chain.
+   * @returns The updated data object.
+   */
   async handle(data: any, next: NextFunction) {
     if (data?.action === 'view') {
       const jobID = await text({

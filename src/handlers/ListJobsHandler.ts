@@ -5,6 +5,10 @@ import showTable from '../services/services';
 
 const jobModel = new Job();
 
+/**
+ * ListJobsHandler class to handle the list job action.
+ * It fetches and displays all jobs.
+ */
 export default class ListJobsHandler implements Handler {
   constructor() {}
   async handle(data: any, next: NextFunction) {
