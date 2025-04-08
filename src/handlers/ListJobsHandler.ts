@@ -1,4 +1,4 @@
-import Handler from './Handler';
+import Handler, { NextFunction } from './Handler';
 import Job from '../models/jobModel';
 import { spinner } from '@clack/prompts';
 import showTable from '../services/services';
@@ -7,7 +7,7 @@ const jobModel = new Job();
 
 export default class ListJobsHandler implements Handler {
   constructor() {}
-  async handle(data: any) {
+  async handle(data: any, next: NextFunction) {
     if (data?.action === 'list') {
       const s = spinner();
       s.start('Fetching jobs...');

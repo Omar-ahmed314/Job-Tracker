@@ -9,7 +9,7 @@ const chalk_1 = __importDefault(require("chalk"));
 const jobModel = new jobModel_1.default();
 class DeleteJobHandler {
     constructor() { }
-    async handle(data) {
+    async handle(data, next) {
         if (data?.action === 'delete') {
             const deleteJobID = await (0, prompts_1.text)({
                 message: 'Enter job ID to delete: ',

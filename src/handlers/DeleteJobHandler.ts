@@ -1,4 +1,4 @@
-import Handler from './Handler';
+import Handler, { NextFunction } from './Handler';
 import Job, { job, jobStatus } from '../models/jobModel';
 import { intro, outro, text, select, spinner } from '@clack/prompts';
 import chalk from 'chalk';
@@ -7,7 +7,7 @@ const jobModel = new Job();
 
 export default class DeleteJobHandler implements Handler {
   constructor() {}
-  async handle(data: any) {
+  async handle(data: any, next: NextFunction) {
     if (data?.action === 'delete') {
       const deleteJobID = await text({
         message: 'Enter job ID to delete: ',

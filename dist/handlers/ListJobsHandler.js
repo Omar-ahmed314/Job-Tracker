@@ -9,7 +9,7 @@ const services_1 = __importDefault(require("../services/services"));
 const jobModel = new jobModel_1.default();
 class ListJobsHandler {
     constructor() { }
-    async handle(data) {
+    async handle(data, next) {
         if (data?.action === 'list') {
             const s = (0, prompts_1.spinner)();
             s.start('Fetching jobs...');

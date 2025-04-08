@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const prompts_1 = require("@clack/prompts");
 class SkaffoldHandler {
     constructor() { }
-    async handle(data) {
+    async handle(data, next) {
         const action = await (0, prompts_1.select)({
             message: 'What would you like to do?',
             options: [
@@ -13,8 +13,11 @@ class SkaffoldHandler {
                 { value: 'filter', label: 'Filter jobs' },
                 { value: 'delete', label: 'Delete a job' },
                 { value: 'update', label: 'Update a job' },
+                { value: 'exit', label: 'Exit' },
             ],
         });
+        if (action === 'exit')
+            next('exit');
         data.action = action;
         return data;
     }

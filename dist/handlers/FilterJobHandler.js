@@ -9,7 +9,7 @@ const services_1 = __importDefault(require("../services/services"));
 const jobModel = new jobModel_1.default();
 class FilterJobHandler {
     constructor() { }
-    async handle(data) {
+    async handle(data, next) {
         if (data?.action === 'filter') {
             const filterStatus = await (0, prompts_1.select)({
                 message: 'Filter by status: ',

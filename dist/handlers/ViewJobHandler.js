@@ -9,7 +9,7 @@ const services_1 = __importDefault(require("../services/services"));
 const jobModel = new jobModel_1.default();
 class ViewJobHandler {
     constructor() { }
-    async handle(data) {
+    async handle(data, next) {
         if (data?.action === 'view') {
             const jobID = await (0, prompts_1.text)({
                 message: 'Enter job ID: ',
