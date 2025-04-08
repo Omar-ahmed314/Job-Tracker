@@ -1,31 +1,61 @@
-## functional requirements
+<p align="center">
+  <img src="images/Frame%2091.svg" alt="logo">
+</p>
 
-- types
+# Functions
 
-```ts
-  type job: {
-    id: number,
-    jobTitle: string,
-    company: string,
-    status: "InProgress" | "Rejected" | "Assessment" | "PhoneCall" | "meeting" | "JobOffer",
-    applyDate: Date,
-    jobURL: string,
-    details: string
-  }
+Now you can track your dream jobs
+
+- Insert Job
+- Delete
+- Modify
+- List && Filter
+
+# How to install
+
+- clone repo
+
+```bash
+git clone https://github.com/Omar-ahmed314/Job-Tracker
 ```
 
-## CRUD Operations
+- install MongoDB and create jobTracker database and Jobs collection
+- copy the connection string into .env file
 
-- ~~insert new job~~
-- modify job
-  - modify status
-- delete job
+```js
+MONGODB_CONNECTION_STRING=<connection_string>
+```
 
-### Read
+- run
 
-- ~~All jobs~~
-- ~~Show job:~~
-  - by id
-- ~~Filter Jobs by:~~
-  - status
-  - date -> applied from and to
+```bash
+npm install
+npm link
+job-tracker
+```
+
+# Usage
+
+### insert job
+
+![insert](images/insert.gif)
+
+### scaffold job
+
+![insert](images/scaffold.gif)
+
+### filter job
+
+![insert](images/filter.gif)
+
+### list jobs
+
+![insert](images/list.gif)
+
+### update job
+
+![insert](images/update.gif)
+
+### view by id job
+
+![insert](images/view_by_id.gif)
