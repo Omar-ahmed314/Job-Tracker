@@ -8,6 +8,10 @@ export default class ListJobsHandler implements Handler {
   async handle(data: any) {
     if (data?.action === 'list') {
       const jobs = await jobModel.index();
+      jobs?.forEach((job) => {
+        job._id = job._id?.toString();
+        job.applyDate = job.applyDate?.toDateString() as unknown as Date;
+      });
       if (jobs?.length)
         console.table(jobs, [
           '_id',

@@ -43,8 +43,6 @@ async function main() {
 }
 
 main();
-
-// async function main() {
 //   const action = await select({
 //     message: 'What would you like to do?',
 //     options: [

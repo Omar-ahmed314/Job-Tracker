@@ -10,6 +10,10 @@ class ListJobsHandler {
     async handle(data) {
         if (data?.action === 'list') {
             const jobs = await jobModel.index();
+            jobs?.forEach((job) => {
+                job._id = job._id?.toString();
+                job.applyDate = job.applyDate?.toDateString();
+            });
             if (jobs?.length)
                 console.table(jobs, [
                     '_id',

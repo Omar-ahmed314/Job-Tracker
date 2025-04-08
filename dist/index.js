@@ -36,7 +36,6 @@ async function main() {
     process.exit(0);
 }
 main();
-// async function main() {
 //   const action = await select({
 //     message: 'What would you like to do?',
 //     options: [
