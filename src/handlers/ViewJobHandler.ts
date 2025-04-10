@@ -28,7 +28,15 @@ export default class ViewJobHandler implements Handler {
       s.start('Fetching job...');
       const job = await jobModel.showById(jobID as string);
       s.stop('Job fetched successfully!');
-      showTable([job] as job[]);
+      showTable([job] as job[], [
+        '_id',
+        'jobTitle',
+        'company',
+        'status',
+        'applyDate',
+        'jobURL',
+        'details',
+      ]);
     }
     return data;
   }

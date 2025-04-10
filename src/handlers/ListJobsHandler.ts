@@ -17,7 +17,7 @@ export default class ListJobsHandler implements Handler {
       s.start('Fetching jobs...');
       const jobs = await jobModel.index();
       s.stop('Jobs fetched successfully!');
-      showTable(jobs);
+      showTable(jobs, ['_id', 'jobTitle', 'company', 'status', 'applyDate']);
     }
     return data;
   }

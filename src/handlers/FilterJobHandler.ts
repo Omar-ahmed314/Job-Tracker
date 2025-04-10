@@ -40,7 +40,13 @@ export default class FilterJobHandler implements Handler {
         to: toDate ? new Date(toDate as string) : undefined,
       });
       s.stop('Jobs filtered successfully!');
-      showTable(filteredJobs as job[]);
+      showTable(filteredJobs as job[], [
+        '_id',
+        'jobTitle',
+        'company',
+        'status',
+        'applyDate',
+      ]);
     }
     return data;
   }
