@@ -2,6 +2,8 @@
   <img src="images/Frame%2091.svg" alt="logo">
 </p>
 
+**Job Tracker is a CLI application where you can track your applied jobs, view, list, delete, and update**
+
 # Functions
 
 Now you can track your dream jobs
